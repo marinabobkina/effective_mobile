@@ -8,7 +8,12 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    @allure.step("Открыть URL: 'https://www.effective-mobile.ru/'")
-    def open(self):
-        self.driver.get("https://www.effective-mobile.ru/")
+    @allure.step("Открыть URL: {url}")
+    def open(self, url: str):
+        self.driver.get(url)
         return self
+
+    @allure.step("Клик по элементу: {locator}")
+    def click(self, locator: tuple):
+        el = wait_for(self.driver, lambda d: d.find_element(*locator))
+        el.click()
