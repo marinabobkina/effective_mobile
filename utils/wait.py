@@ -2,7 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def wait_for(driver, condition, timeout):
+def wait_for(driver, condition, timeout=10):
     return WebDriverWait(driver, timeout).until(condition)
 
 
