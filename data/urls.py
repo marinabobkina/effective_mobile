@@ -1,3 +1,10 @@
 BASE = "https://effective-mobile.ru/"
+
 ABOUT = "about"
-CONTACTS = "contacts"
+VACANCIES = "specializations"
+REVIEWS = "testimonials"
+CONTACTS = "contact"
+
+AUTSTAFF = "services"
+EMPLOYMENT = "services"
+CONSULTATION = "contact"
