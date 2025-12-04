@@ -1,16 +1,15 @@
 import allure
 from pages.base_page import BasePage
 from locators import home_locators as L
+from data import urls
 
 
 class HomePage(BasePage):
-    URL = "https://effective-mobile.ru/"
-
     @allure.step("Открыть главную страницу")
     def open(self):
-        super().open(self.URL)
+        super().open(urls.BASE)
         return self
 
-    @allure.step("Переход: О нас")
-    def click_about(self):
-        self.click(L.NAV_ABOUT)
+    @allure.step("Ожидать видимость заголовка на главной странице")
+    def wait_visibility_home_page_title(self):
+        self.visibility(L.PAGE_TITLE)
