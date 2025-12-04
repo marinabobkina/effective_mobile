@@ -45,7 +45,7 @@ coverage.xml
 # Selenium / Browser drivers / Screenshots / Reports
 drivers/          # локальные драйверы для браузеров
 screenshots/      # скриншоты тестов
-allure-results/   # папка с результатами Allure
+allure_results/   # папка с результатами Allure
 
 # IDE / Editor files
 .vscode/
