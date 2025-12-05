@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 \
     libgtk-3-0 libnss3 libx11-6 libxcomposite1 libxdamage1 libxext6 \
     libxfixes3 libxrandr2 libgbm1 libxshmfence1 libdrm2 libxkbcommon0 libxi6 \
-    libgdk-pixbuf2.0-0 libu2f-udev \
+    libgdk-pixbuf-2.0-0 libu2f-udev \
     && rm -rf /var/lib/apt/lists/*
 
 # Установка Google Chrome (stable)
