@@ -91,11 +91,11 @@ effective_mobile/
 1) Сборка образа (в корне проекта):
    - Windows PowerShell:
      ```powershell
-     docker build -t effective-mobile-tests:py310 .
+     docker build -t effective_mobile .
      ```
    - Linux/macOS:
      ```bash
-     docker build -t effective-mobile-tests:py310 .
+     docker build -t effective_mobile .
      ```
 
 2) Запуск контейнера с монтированием результатов Allure и кеша драйверов:
@@ -104,29 +104,20 @@ effective_mobile/
      docker run --rm --shm-size=2g \
        -v ${PWD}\allure_results:/app/allure_results \
        -v ${PWD}\.wdm:/wdm \
-       effective-mobile-tests:py310
+       effective_mobile
      ```
    - Linux/macOS:
      ```bash
      docker run --rm --shm-size=2g \
        -v "$(pwd)/allure_results:/app/allure_results" \
        -v "$(pwd)/.wdm:/wdm" \
-       effective-mobile-tests:py310
+       effective_mobile
      ```
 
 3) Открыть отчёт Allure на хосте:
    ```bash
    allure serve allure_results
    ```
-
-Передача дополнительных аргументов pytest при запуске контейнера
-```bash
-docker run --rm \
-  -v "$(pwd)/allure_results:/app/allure_results" \
-  effective-mobile-tests:py310 \
-  bash -lc "pytest -k navigation --maxfail=1 --alluredir=allure_results"
-```
-
 
 Лучшие практики, использованные в проекте
 - Page Object изолирует работу с DOM от тестов.
