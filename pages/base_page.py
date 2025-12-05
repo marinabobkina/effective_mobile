@@ -1,3 +1,8 @@
+"""
+Базовые действия для Page Object: открытие URL, скролл, ожидание видимости и клики.
+Методы инкапсулируют ожидания и выбрасывают осмысленные AssertionError для удобства в тестах.
+"""
+
 import time
 import allure
 from selenium.webdriver.common.action_chains import ActionChains
@@ -8,15 +13,25 @@ from locators import home_locators as L
 
 class BasePage:
     def __init__(self, driver):
+        """Сохраняет экземпляр WebDriver для дальнейших действий на странице."""
         self.driver = driver
 
     @allure.step("Открыть URL: {url}")
     def open(self, url: str):
+        """Открытие указанного URL и возврат текущего объекта класса."""
         self.driver.get(url)
         return self
 
     @allure.step("Прокрутка страницы к footer")
     def scroll_to_footer(self, timeout = 30, step = 1400, pause = 0.4):
+        """
+        Прокручивает страницу до футера и возвращает найденный элемент footer.
+        :param timeout: максимальное время ожидания в секундах
+        :param step: величина прокрутки за один шаг (в пикселях)
+        :param pause: пауза между шагами прокрутки (в секундах)
+        :raises TimeoutException: если футер не найден за отведённое время
+        :return: элемент футера
+        """
         actions = ActionChains(self.driver)
         end = time.time() + timeout
         last_height = 0
@@ -41,6 +56,7 @@ class BasePage:
 
     @allure.step("Ожидать видимость элемента")
     def visibility(self, locator: tuple):
+        """Ждёт видимость элемента по локатору и возвращает его, иначе бросает AssertionError."""
         try:
             return wait_for(
                 self.driver,
@@ -53,6 +69,7 @@ class BasePage:
 
     @allure.step("Клик по элементу: {locator}")
     def click(self, locator: tuple):
+        """Кликает по элементу, ожидая его кликабельность, и возвращает этот элемент."""
         try:
             el = wait_for(
                 self.driver,
@@ -66,6 +83,7 @@ class BasePage:
 
     @allure.step("Ожидать URL содержит: {part}")
     def should_url_contain(self, part: str):
+        """Ожидает, что текущий URL будет содержать подстроку `part`."""
         try:
             wait_for(
                 self.driver,
