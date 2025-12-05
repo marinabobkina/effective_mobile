@@ -1,3 +1,12 @@
+"""Тесты навигации на главной странице.
+
+Проверяем:
+- появление якоря соответствующего пункта меню в URL;
+- переход к целевой секции страницы.
+
+Предпосылки: прокрутка до футера обязательна (элементы блоков становятся доступны после скролла к footer).
+"""
+
 import allure
 import pytest
 from pages.home_page import HomePage
@@ -22,6 +31,7 @@ class TestHomeNavigation:
         ]
     )
     def test_navigation_links(self, driver, locator, expected_part):
+
         page = HomePage(driver).open()
         page.wait_visibility_home_page_title()
         page.scroll_to_footer()
